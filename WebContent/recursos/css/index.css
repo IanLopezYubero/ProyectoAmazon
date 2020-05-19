@@ -1,0 +1,20 @@
+body{
+	background: #232f3e;
+}
+
+.imagenPais{
+	width: 150px;
+	height: 150px;
+}
+
+@media(min-width: 1024px){
+	.imagenPais{
+		width: 200px;
+		height: 200px;
+	}
+}
+
+h2{
+	color: white;
+}
+
