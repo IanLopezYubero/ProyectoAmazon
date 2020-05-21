@@ -77,13 +77,13 @@ String id_amazon = request.getParameter("id_amazon");
           <a class="pin-ic">
             <i class="fab fa-pinterest fa-lg white-text fa-2x"> </i>
           </a>
-						<div class="footer text-center py-3">
-							<small>Contacto: amazon.support@amazonworld.com</small>
-						</div>
-						<div class="footer text-center py-3">
-							<small>Teléfono: +49-654-65-654-9</small>
-						</div>
-					</div>
+          <div class="footer text-center py-3">
+       		<small>Contacto: amazon.support@amazonworld.com</small>
+  		</div>
+  		<div class="footer text-center py-3">
+  		<small>Teléfono: +49-654-65-654-9</small>
+  		</div>
+        </div>
       </div>
     </div>
   </div>
