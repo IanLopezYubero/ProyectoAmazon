@@ -6,7 +6,7 @@ public class Servicio_Postventa {
 	private String dni;
 	private String tipoServicio;
 	private String estadoCaso;
-	
+
 	public Servicio_Postventa() {
 		super();
 	}
@@ -59,6 +59,5 @@ public class Servicio_Postventa {
 	public void setEstadoCaso(String estadoCaso) {
 		this.estadoCaso = estadoCaso;
 	}
-	
-	
+
 }

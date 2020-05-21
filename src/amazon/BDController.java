@@ -7,8 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-
-
 public class BDController {
 	private Connection conexion;
 
@@ -28,7 +26,7 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public Connection getConexion() {
 		return conexion;
 	}
@@ -36,39 +34,44 @@ public class BDController {
 	public void setConexion(Connection conexion) {
 		this.conexion = conexion;
 	}
-	
-	//Método para insertar nueva seccion en la base de datos
-		public void insertarSeccion(Seccion seccion) {
-			try {
-				Statement miStatement = this.conexion.createStatement();
-				miStatement.executeUpdate("INSERT INTO secciones VALUES (" + seccion.getId_seccion() + ", '" + seccion.getNombreSeccion() + "')");
-				miStatement.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Error en insertarSeccion");
-				e.printStackTrace();
-			}
+
+	// Método para insertar nueva seccion en la base de datos
+	public void insertarSeccion(Seccion seccion) {
+		try {
+			Statement miStatement = this.conexion.createStatement();
+			miStatement.executeUpdate("INSERT INTO secciones VALUES (" + seccion.getId_seccion() + ", '"
+					+ seccion.getNombreSeccion() + "')");
+			miStatement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error en insertarSeccion");
+			e.printStackTrace();
 		}
-	
-	//Método para insertar nuevo empleado en la base de datos
-		public void insertarEmpleado(Empleado empleado, int id_seccion) {
-			try {
-				Statement miStatement = this.conexion.createStatement();
-				miStatement.executeUpdate("INSERT INTO empleados VALUES ('" + empleado.getDni() + "', '" + empleado.getNombreEmpleado() + "', '" + empleado.getApellidoEmpleado() + "', '" + empleado.getDireccion() + "', '" + empleado.getTlf() + "', " + empleado.getId_amazon() + ")");
-				miStatement.executeUpdate("INSERT INTO pertenece VALUES ('" + empleado.getDni() + "', " + id_seccion + ")");
-				miStatement.close();
-			} catch (SQLException e) {
-				// TODO Auto-generated catch block
-				System.out.println("Error en insertarEmpleado");
-				e.printStackTrace();
-			}
+	}
+
+	// Método para insertar nuevo empleado en la base de datos
+	public void insertarEmpleado(Empleado empleado, int id_seccion) {
+		try {
+			Statement miStatement = this.conexion.createStatement();
+			miStatement.executeUpdate("INSERT INTO empleados VALUES ('" + empleado.getDni() + "', '"
+					+ empleado.getNombreEmpleado() + "', '" + empleado.getApellidoEmpleado() + "', '"
+					+ empleado.getDireccion() + "', '" + empleado.getTlf() + "', " + empleado.getId_amazon() + ")");
+			miStatement.executeUpdate("INSERT INTO pertenece VALUES ('" + empleado.getDni() + "', " + id_seccion + ")");
+			miStatement.close();
+		} catch (SQLException e) {
+			// TODO Auto-generated catch block
+			System.out.println("Error en insertarEmpleado");
+			e.printStackTrace();
 		}
-	
-	//Método para insertar nuevo servicio postventa en la base de datos
+	}
+
+	// Método para insertar nuevo servicio postventa en la base de datos
 	public void insertarServPost(Servicio_Postventa servPost) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("INSERT INTO servicios_postventa VALUES (" + servPost.getId_servicio() + ", " + servPost.getId_pedido() + ", '" + servPost.getTipoServicio() + "', '" + servPost.getEstadoCaso() + "', '" + servPost.getDni() + "')");
+			miStatement.executeUpdate("INSERT INTO servicios_postventa VALUES (" + servPost.getId_servicio() + ", "
+					+ servPost.getId_pedido() + ", '" + servPost.getTipoServicio() + "', '" + servPost.getEstadoCaso()
+					+ "', '" + servPost.getDni() + "')");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -76,34 +79,52 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método para insertar nuevo producto en la base de datos
+
+	// Método para insertar nuevo producto en la base de datos
 	public void insertarProducto(Producto producto) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("INSERT INTO productos VALUES (" + producto.getId_producto() + ", '" + producto.getPaisProduccion() + "', " + producto.getPrecio() + ", '" + producto.getNombreProducto() + "', '" + producto.getMarca() + "', '" + producto.getModelo() + "', '" + producto.getEspecificaciones() + "', " + producto.getExistencias() + ", " + producto.getId_departamento() + ")");
+			miStatement.executeUpdate("INSERT INTO productos VALUES (" + producto.getId_producto() + ", '"
+					+ producto.getPaisProduccion() + "', " + producto.getPrecio() + ", '" + producto.getNombreProducto()
+					+ "', '" + producto.getMarca() + "', '" + producto.getModelo() + "', '"
+					+ producto.getEspecificaciones() + "', " + producto.getExistencias() + ", "
+					+ producto.getId_departamento() + ")");
 			miStatement.close();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block                              
-			System.out.println("Error en insertarProducto");                
-			e.printStackTrace();                                            
-		}                                                                   
-	}                                                                       
-	                                                                        
-	//Método para insertar nuevo pedido a la base de datos                  
-	public void insertarPedido(Pedido pedido, int id_producto) {            
-		try {                                                               
-			Statement miStatement = this.conexion.createStatement();        
-			if(pedido.getFechaEntregada().isEmpty()) {                      
-				if(pedido.getReview().isEmpty()) {
-					if(pedido.getGastosEnvio() == 0) {
-						miStatement.executeUpdate("INSERT INTO pedidos VALUES (" + pedido.getId_pedido() + ", '" + pedido.getFechaRealizada() + "', '" + pedido.getFechaEntregaPrevista() + "', '" + pedido.getFechaDespachada() + "', null , '" + pedido.getEstadoPedido() + "', null , " + pedido.getMonto() + ", null , " + pedido.getId_cliente() + ")");
+			// TODO Auto-generated catch block
+			System.out.println("Error en insertarProducto");
+			e.printStackTrace();
+		}
+	}
+
+	// Método para insertar nuevo pedido a la base de datos
+	public void insertarPedido(Pedido pedido, int id_producto) {
+		try {
+			Statement miStatement = this.conexion.createStatement();
+			if (pedido.getFechaEntregada().isEmpty()) {
+				if (pedido.getReview().isEmpty()) {
+					if (pedido.getGastosEnvio() == 0) {
+						miStatement.executeUpdate("INSERT INTO pedidos VALUES (" + pedido.getId_pedido() + ", '"
+								+ pedido.getFechaRealizada() + "', '" + pedido.getFechaEntregaPrevista() + "', '"
+								+ pedido.getFechaDespachada() + "', null , '" + pedido.getEstadoPedido() + "', null , "
+								+ pedido.getMonto() + ", null , " + pedido.getId_cliente() + ")");
 					}
-					miStatement.executeUpdate("INSERT INTO pedidos VALUES (" + pedido.getId_pedido() + ", '" + pedido.getFechaRealizada() + "', '" + pedido.getFechaEntregaPrevista() + "', '" + pedido.getFechaDespachada() + "', null , '" + pedido.getEstadoPedido() + "', null , " + pedido.getMonto() + ", " + pedido.getGastosEnvio() + ", " + pedido.getId_cliente() + ")");
+					miStatement.executeUpdate("INSERT INTO pedidos VALUES (" + pedido.getId_pedido() + ", '"
+							+ pedido.getFechaRealizada() + "', '" + pedido.getFechaEntregaPrevista() + "', '"
+							+ pedido.getFechaDespachada() + "', null , '" + pedido.getEstadoPedido() + "', null , "
+							+ pedido.getMonto() + ", " + pedido.getGastosEnvio() + ", " + pedido.getId_cliente() + ")");
 				}
-				miStatement.executeUpdate("INSERT INTO pedidos VALUES (" + pedido.getId_pedido() + ", '" + pedido.getFechaRealizada() + "', '" + pedido.getFechaEntregaPrevista() + "', '" + pedido.getFechaDespachada() + "', null , '" + pedido.getEstadoPedido() + "', '" + pedido.getReview() + "', " + pedido.getMonto() + ", " + pedido.getGastosEnvio() + ", " + pedido.getId_cliente() + ")");
-			}else {
-				miStatement.executeUpdate("INSERT INTO pedidos VALUES (" + pedido.getId_pedido() + ", '" + pedido.getFechaRealizada() + "', '" + pedido.getFechaEntregaPrevista() + "', '" + pedido.getFechaDespachada() + "', '" + pedido.getFechaEntregada() + "', '" + pedido.getEstadoPedido() + "', '" + pedido.getReview() + "', " + pedido.getMonto() + ", " + pedido.getGastosEnvio() + ", " + pedido.getId_cliente() + ")");
+				miStatement.executeUpdate("INSERT INTO pedidos VALUES (" + pedido.getId_pedido() + ", '"
+						+ pedido.getFechaRealizada() + "', '" + pedido.getFechaEntregaPrevista() + "', '"
+						+ pedido.getFechaDespachada() + "', null , '" + pedido.getEstadoPedido() + "', '"
+						+ pedido.getReview() + "', " + pedido.getMonto() + ", " + pedido.getGastosEnvio() + ", "
+						+ pedido.getId_cliente() + ")");
+			} else {
+				miStatement.executeUpdate("INSERT INTO pedidos VALUES (" + pedido.getId_pedido() + ", '"
+						+ pedido.getFechaRealizada() + "', '" + pedido.getFechaEntregaPrevista() + "', '"
+						+ pedido.getFechaDespachada() + "', '" + pedido.getFechaEntregada() + "', '"
+						+ pedido.getEstadoPedido() + "', '" + pedido.getReview() + "', " + pedido.getMonto() + ", "
+						+ pedido.getGastosEnvio() + ", " + pedido.getId_cliente() + ")");
 			}
 			miStatement.executeUpdate("INSERT INTO esta VALUES (" + pedido.getId_pedido() + ", " + id_producto + ")");
 			miStatement.close();
@@ -113,13 +134,15 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método para insertar nuevo departamento en la base de datos
+
+	// Método para insertar nuevo departamento en la base de datos
 	public void insertarDepartamento(Departamento departamento, int id_almacen) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("INSERT INTO departamentos VALUES (" + departamento.getId_departamento() + ", '" + departamento.getNombreDepartamento() + "')");
-			miStatement.executeUpdate("INSERT INTO tiene VALUES (" + id_almacen + ", " + departamento.getId_departamento() + ")");
+			miStatement.executeUpdate("INSERT INTO departamentos VALUES (" + departamento.getId_departamento() + ", '"
+					+ departamento.getNombreDepartamento() + "')");
+			miStatement.executeUpdate(
+					"INSERT INTO tiene VALUES (" + id_almacen + ", " + departamento.getId_departamento() + ")");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -127,13 +150,15 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método para insertar nuevo almacen en la base de datos
+
+	// Método para insertar nuevo almacen en la base de datos
 	public void insertarAlmacen(Almacen almacen, int id_departamento) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("INSERT INTO almacenes VALUES (" + almacen.getId_almacen() + ", '" + almacen.getProvincia() + "', '" + almacen.getLocalidad() + "', " + almacen.getId_amazon() + ")");
-			miStatement.executeUpdate("INSERT INTO tiene VALUES (" + almacen.getId_almacen() + ", " + id_departamento + ")");
+			miStatement.executeUpdate("INSERT INTO almacenes VALUES (" + almacen.getId_almacen() + ", '"
+					+ almacen.getProvincia() + "', '" + almacen.getLocalidad() + "', " + almacen.getId_amazon() + ")");
+			miStatement.executeUpdate(
+					"INSERT INTO tiene VALUES (" + almacen.getId_almacen() + ", " + id_departamento + ")");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -141,14 +166,17 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método para insertar un nuevo proveedor a la base de datos
+
+	// Método para insertar un nuevo proveedor a la base de datos
 	public void insertarProveedor(Proveedor proveedor, int id_amazon) {
-		String cadena = "INSERT INTO proveedores VALUES (" + proveedor.getId_proveedor() + ", '" + proveedor.getNombreProveedor() + "', '" + proveedor.getDireccion() + "', '" + proveedor.getTlf() + "', '" + proveedor.getCorreoProveedor() + "')";
+		String cadena = "INSERT INTO proveedores VALUES (" + proveedor.getId_proveedor() + ", '"
+				+ proveedor.getNombreProveedor() + "', '" + proveedor.getDireccion() + "', '" + proveedor.getTlf()
+				+ "', '" + proveedor.getCorreoProveedor() + "')";
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			miStatement.executeUpdate(cadena);
-			miStatement.executeUpdate("INSERT INTO contratos VALUES (" + id_amazon + ", " + proveedor.getId_proveedor() + ")");
+			miStatement.executeUpdate(
+					"INSERT INTO contratos VALUES (" + id_amazon + ", " + proveedor.getId_proveedor() + ")");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -156,12 +184,13 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método para insertar nuevo amazon en la base de datos
+
+	// Método para insertar nuevo amazon en la base de datos
 	public void insertarAmazon(Amazon amazon) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("INSERT INTO amazon VALUES (" + amazon.getId_amazon() + ", '" + amazon.getPais() + "')");
+			miStatement.executeUpdate(
+					"INSERT INTO amazon VALUES (" + amazon.getId_amazon() + ", '" + amazon.getPais() + "')");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -169,17 +198,24 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método para insertar un nuevo cliente a la base de datos
+
+	// Método para insertar un nuevo cliente a la base de datos
 	public void insertarCliente(Cliente cliente) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			if(cliente.getDuracionSuscripcion().isEmpty()) {
-				miStatement.executeUpdate("INSERT INTO clientes VALUES (" + cliente.getId_cliente() + ", '" + cliente.getNombreCliente() + "', '" + cliente.getApellidoCliente() + "', '" + cliente.getDireccion() + "', '" + cliente.getCorreoCliente() + "', '" + cliente.getTlf() + "', '" + cliente.getTipoSuscripcion() + "', null , " + cliente.getId_amazon() + ")");
-			}else {
-				miStatement.executeUpdate("INSERT INTO clientes VALUES (" + cliente.getId_cliente() + ", '" + cliente.getNombreCliente() + "', '" + cliente.getApellidoCliente() + "', '" + cliente.getDireccion() + "', '" + cliente.getCorreoCliente() + "', '" + cliente.getTlf() + "', '" + cliente.getTipoSuscripcion() + "', '" + cliente.getDuracionSuscripcion() + "', " + cliente.getId_amazon() + ")");
+			if (cliente.getDuracionSuscripcion().isEmpty()) {
+				miStatement.executeUpdate("INSERT INTO clientes VALUES (" + cliente.getId_cliente() + ", '"
+						+ cliente.getNombreCliente() + "', '" + cliente.getApellidoCliente() + "', '"
+						+ cliente.getDireccion() + "', '" + cliente.getCorreoCliente() + "', '" + cliente.getTlf()
+						+ "', '" + cliente.getTipoSuscripcion() + "', null , " + cliente.getId_amazon() + ")");
+			} else {
+				miStatement.executeUpdate("INSERT INTO clientes VALUES (" + cliente.getId_cliente() + ", '"
+						+ cliente.getNombreCliente() + "', '" + cliente.getApellidoCliente() + "', '"
+						+ cliente.getDireccion() + "', '" + cliente.getCorreoCliente() + "', '" + cliente.getTlf()
+						+ "', '" + cliente.getTipoSuscripcion() + "', '" + cliente.getDuracionSuscripcion() + "', "
+						+ cliente.getId_amazon() + ")");
 			}
-			
+
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -187,14 +223,14 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método para validar dni del empleado
+
+	// Método para validar dni del empleado
 	public boolean existeEmpleado(String dni) {
 		boolean existe = false;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT dni FROM empleados WHERE dni = " + dni);
-			if(rs.first()) {
+			if (rs.first()) {
 				existe = true;
 			}
 			miStatement.close();
@@ -206,14 +242,14 @@ public class BDController {
 		}
 		return existe;
 	}
-	
-	//Método para calcular el identificador maximo de servicios
+
+	// Método para calcular el identificador maximo de servicios
 	public int calcularIdServicio() {
 		int id_servicio = 1;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT MAX(id_servicio) FROM servicios_postventa");
-			if(rs.first() == true) {
+			if (rs.first() == true) {
 				id_servicio = rs.getInt(1);
 			}
 			miStatement.close();
@@ -225,14 +261,14 @@ public class BDController {
 		}
 		return id_servicio;
 	}
-	
-	//Método para calcular el identificador maximo de pedidos
+
+	// Método para calcular el identificador maximo de pedidos
 	public int calcularIdPedido() {
 		int id_pedido = 1;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT MAX(id_pedido) FROM pedidos");
-			if(rs.first() == true) {
+			if (rs.first() == true) {
 				id_pedido = rs.getInt(1);
 			}
 			miStatement.close();
@@ -244,14 +280,14 @@ public class BDController {
 		}
 		return id_pedido;
 	}
-	
-	//Método para calcular el identificador maximo de productos
+
+	// Método para calcular el identificador maximo de productos
 	public int calcularIdProducto() {
 		int id_producto = 1;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT MAX(id_producto) FROM productos");
-			if(rs.first() == true) {
+			if (rs.first() == true) {
 				id_producto = rs.getInt(1);
 			}
 			miStatement.close();
@@ -263,14 +299,14 @@ public class BDController {
 		}
 		return id_producto;
 	}
-	
-	//Método para calcular el identificador maximo de secciones
+
+	// Método para calcular el identificador maximo de secciones
 	public int calcularIdSeccion() {
 		int id_seccion = 1;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT MAX(id_seccion) FROM secciones");
-			if(rs.first() == true) {
+			if (rs.first() == true) {
 				id_seccion = rs.getInt(1);
 			}
 			miStatement.close();
@@ -282,14 +318,14 @@ public class BDController {
 		}
 		return id_seccion;
 	}
-	
-	//Método para calcular el identificador maximo de proveedores
+
+	// Método para calcular el identificador maximo de proveedores
 	public int calcularIdProveedor() {
 		int id_proveedor = 1;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT MAX(id_proveedor) FROM proveedores");
-			if(rs.first() == true) {
+			if (rs.first() == true) {
 				id_proveedor = rs.getInt(1);
 			}
 			miStatement.close();
@@ -301,14 +337,14 @@ public class BDController {
 		}
 		return id_proveedor;
 	}
-	
-	//Método para calcular el identificador maximo de amazons
+
+	// Método para calcular el identificador maximo de amazons
 	public int calcularIdAmazon() {
 		int id_amazon = 1;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT MAX(id_amazon) FROM amazon");
-			if(rs.first() == true) {
+			if (rs.first() == true) {
 				id_amazon = rs.getInt(1);
 			}
 			miStatement.close();
@@ -320,14 +356,14 @@ public class BDController {
 		}
 		return id_amazon;
 	}
-	
-	//Método para calcular el identificador maximo de almacenes
+
+	// Método para calcular el identificador maximo de almacenes
 	public int calcularIdAlmacen() {
 		int id_almacen = 1;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT MAX(id_almacen) FROM almacenes");
-			if(rs.first() == true) {
+			if (rs.first() == true) {
 				id_almacen = rs.getInt(1);
 			}
 			miStatement.close();
@@ -339,14 +375,14 @@ public class BDController {
 		}
 		return id_almacen;
 	}
-	
-	//Método calcular el identificador maximo de departamentos
+
+	// Método calcular el identificador maximo de departamentos
 	public int calcularIdDepartamento() {
 		int id_departamento = 1;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT MAX(id_departamento) FROM departamentos");
-			if(rs.first() == true) {
+			if (rs.first() == true) {
 				id_departamento = rs.getInt(1);
 			}
 			miStatement.close();
@@ -358,14 +394,14 @@ public class BDController {
 		}
 		return id_departamento;
 	}
-	
-	//Método para calcular el identificador maximo de clientes
+
+	// Método para calcular el identificador maximo de clientes
 	public int calcularIdCliente() {
 		int id_cliente = 1;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT MAX(id_cliente) FROM clientes");
-			if(rs.first() == true) {
+			if (rs.first() == true) {
 				id_cliente = rs.getInt(1);
 			}
 			miStatement.close();
@@ -377,15 +413,16 @@ public class BDController {
 		}
 		return id_cliente;
 	}
-	
-	//Método para comprobar existencia de departamento
-	public boolean existeDepart(String nomDepart){
+
+	// Método para comprobar existencia de departamento
+	public boolean existeDepart(String nomDepart) {
 		boolean existe = false;
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			ResultSet rs = miStatement.executeQuery("SELECT * FROM departamentos WHERE nombreDepartamento = '" + nomDepart + "'");
+			ResultSet rs = miStatement
+					.executeQuery("SELECT * FROM departamentos WHERE nombreDepartamento = '" + nomDepart + "'");
 			while (rs.next()) {
-				existe=true;
+				existe = true;
 			}
 			miStatement.close();
 			rs.close();
@@ -396,15 +433,15 @@ public class BDController {
 		}
 		return existe;
 	}
-	
-	//Método para comprobar existencia de cliente
-	public boolean existeCliente(int id_cliente){
+
+	// Método para comprobar existencia de cliente
+	public boolean existeCliente(int id_cliente) {
 		boolean existe = false;
 		try {
 			Statement miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT * FROM clientes WHERE id_cliente = " + id_cliente);
 			while (rs.next()) {
-				existe=true;
+				existe = true;
 			}
 			miStatement.close();
 			rs.close();
@@ -415,15 +452,16 @@ public class BDController {
 		}
 		return existe;
 	}
-	
-	//Método comprobar existencia seccion
-	public boolean existeSeccion(String nombreSeccion){
+
+	// Método comprobar existencia seccion
+	public boolean existeSeccion(String nombreSeccion) {
 		boolean existe = false;
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			ResultSet rs = miStatement.executeQuery("SELECT * FROM secciones WHERE nombreSeccion = '" + nombreSeccion + "'");
+			ResultSet rs = miStatement
+					.executeQuery("SELECT * FROM secciones WHERE nombreSeccion = '" + nombreSeccion + "'");
 			while (rs.next()) {
-				existe=true;
+				existe = true;
 			}
 			miStatement.close();
 			rs.close();
@@ -434,8 +472,8 @@ public class BDController {
 		}
 		return existe;
 	}
-	
-	//Método devuelve listado de almacenes
+
+	// Método devuelve listado de almacenes
 	public ArrayList<Almacen> dameAlmacenes() {
 		ArrayList<Almacen> almacenes = new ArrayList<Almacen>();
 		Statement miStatement;
@@ -443,7 +481,8 @@ public class BDController {
 			miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT * FROM almacenes");
 			while (rs.next()) {
-				almacenes.add(new Almacen(rs.getInt("id_almacen"), rs.getString("provincia"), rs.getString("localidad"), rs.getInt("id_amazon")));
+				almacenes.add(new Almacen(rs.getInt("id_almacen"), rs.getString("provincia"), rs.getString("localidad"),
+						rs.getInt("id_amazon")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -452,16 +491,20 @@ public class BDController {
 		}
 		return almacenes;
 	}
-	
-	//Método devuelve empleado de cierta seccion
+
+	// Método devuelve empleado de cierta seccion
 	public ArrayList<Empleado> dameEmpleadosSeccion(String seccion) {
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		Statement miStatement;
 		try {
 			miStatement = this.conexion.createStatement();
-			ResultSet rs = miStatement.executeQuery("SELECT * FROM empleados WHERE dni IN (SELECT dniEmpleado FROM pertenece WHERE id_seccion IN (SELECT id_seccion FROM secciones WHERE nombreSeccion = '" + seccion + "'));");
+			ResultSet rs = miStatement.executeQuery(
+					"SELECT * FROM empleados WHERE dni IN (SELECT dniEmpleado FROM pertenece WHERE id_seccion IN (SELECT id_seccion FROM secciones WHERE nombreSeccion = '"
+							+ seccion + "'));");
 			while (rs.next()) {
-				empleados.add(new Empleado(rs.getString("dni"), rs.getString("nombreEmpleado"), rs.getString("apellidosEmpleado"), rs.getString("direccion"), rs.getString("tlf"), rs.getInt("id_amazon")));
+				empleados.add(new Empleado(rs.getString("dni"), rs.getString("nombreEmpleado"),
+						rs.getString("apellidosEmpleado"), rs.getString("direccion"), rs.getString("tlf"),
+						rs.getInt("id_amazon")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -470,8 +513,8 @@ public class BDController {
 		}
 		return empleados;
 	}
-	
-	//Método devuelve listado de empleados
+
+	// Método devuelve listado de empleados
 	public ArrayList<Empleado> dameEmpleados() {
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		Statement miStatement;
@@ -479,7 +522,9 @@ public class BDController {
 			miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT * FROM empleados");
 			while (rs.next()) {
-				empleados.add(new Empleado(rs.getString("dni"), rs.getString("nombreEmpleado"), rs.getString("apellidosEmpleado"), rs.getString("direccion"), rs.getString("tlf"), rs.getInt("id_amazon")));
+				empleados.add(new Empleado(rs.getString("dni"), rs.getString("nombreEmpleado"),
+						rs.getString("apellidosEmpleado"), rs.getString("direccion"), rs.getString("tlf"),
+						rs.getInt("id_amazon")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -488,8 +533,8 @@ public class BDController {
 		}
 		return empleados;
 	}
-	
-	//Método devuelve listado de departamentos
+
+	// Método devuelve listado de departamentos
 	public ArrayList<Departamento> dameDepartamentos() {
 		ArrayList<Departamento> departamentos = new ArrayList<Departamento>();
 		Statement miStatement;
@@ -506,8 +551,8 @@ public class BDController {
 		}
 		return departamentos;
 	}
-	
-	//Método devuele listado de secciones
+
+	// Método devuele listado de secciones
 	public ArrayList<Seccion> dameSecciones() {
 		ArrayList<Seccion> secciones = new ArrayList<Seccion>();
 		Statement miStatement;
@@ -524,8 +569,8 @@ public class BDController {
 		}
 		return secciones;
 	}
-	
-	//Método devuele listado de servicios
+
+	// Método devuele listado de servicios
 	public ArrayList<Servicio_Postventa> dameServicios() {
 		ArrayList<Servicio_Postventa> servicios = new ArrayList<Servicio_Postventa>();
 		Statement miStatement;
@@ -533,7 +578,8 @@ public class BDController {
 			miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT * FROM servicios_postventa");
 			while (rs.next()) {
-				servicios.add(new Servicio_Postventa(rs.getInt("id_servicio"), rs.getInt("id_pedido"), rs.getString("dniEmpleado"), rs.getString("tipoServicio"), rs.getString("estadoServicio")));
+				servicios.add(new Servicio_Postventa(rs.getInt("id_servicio"), rs.getInt("id_pedido"),
+						rs.getString("dniEmpleado"), rs.getString("tipoServicio"), rs.getString("estadoServicio")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -542,8 +588,8 @@ public class BDController {
 		}
 		return servicios;
 	}
-	
-	//Método devuelve array de clientes
+
+	// Método devuelve array de clientes
 	public ArrayList<Cliente> dameClientes() {
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 		Statement miStatement;
@@ -551,7 +597,10 @@ public class BDController {
 			miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT * FROM clientes");
 			while (rs.next()) {
-				clientes.add(new Cliente(rs.getInt("id_cliente"), rs.getString("direccion"), rs.getString("nombre_cliente"), rs.getString("apellidos_cliente"), rs.getString("correo_cliente"), rs.getString("tlf"), rs.getString("tipoSuscripcion"), rs.getString("duracion_suscripcion"), rs.getInt("id_amazon")));
+				clientes.add(new Cliente(rs.getInt("id_cliente"), rs.getString("direccion"),
+						rs.getString("nombre_cliente"), rs.getString("apellidos_cliente"),
+						rs.getString("correo_cliente"), rs.getString("tlf"), rs.getString("tipoSuscripcion"),
+						rs.getString("duracion_suscripcion"), rs.getInt("id_amazon")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -560,8 +609,8 @@ public class BDController {
 		}
 		return clientes;
 	}
-	
-	//Método devuelve array de productos
+
+	// Método devuelve array de productos
 	public ArrayList<Producto> dameProductos() {
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		Statement miStatement;
@@ -569,7 +618,10 @@ public class BDController {
 			miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT * FROM productos");
 			while (rs.next()) {
-				productos.add(new Producto(rs.getInt("id_producto"), rs.getString("nombreProducto"), rs.getString("pais_produccion"), rs.getDouble("precio"), rs.getString("marca"), rs.getString("modelo"), rs.getString("especificaciones"), rs.getInt("existencias"), rs.getInt("id_departamento")));
+				productos.add(new Producto(rs.getInt("id_producto"), rs.getString("nombreProducto"),
+						rs.getString("pais_produccion"), rs.getDouble("precio"), rs.getString("marca"),
+						rs.getString("modelo"), rs.getString("especificaciones"), rs.getInt("existencias"),
+						rs.getInt("id_departamento")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -578,8 +630,8 @@ public class BDController {
 		}
 		return productos;
 	}
-	
-	//Método devuelve array de proveedores
+
+	// Método devuelve array de proveedores
 	public ArrayList<Proveedor> dameProveedores() {
 		ArrayList<Proveedor> proveedores = new ArrayList<Proveedor>();
 		Statement miStatement;
@@ -587,7 +639,8 @@ public class BDController {
 			miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT * FROM proveedores");
 			while (rs.next()) {
-				proveedores.add(new Proveedor(rs.getInt("id_proveedor"), rs.getString("nombreProveedor"), rs.getString("direccionProveedor"), rs.getString("tlf"), rs.getString("correoProveedor")));
+				proveedores.add(new Proveedor(rs.getInt("id_proveedor"), rs.getString("nombreProveedor"),
+						rs.getString("direccionProveedor"), rs.getString("tlf"), rs.getString("correoProveedor")));
 			}
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -596,14 +649,16 @@ public class BDController {
 		}
 		return proveedores;
 	}
-	
-	//Método devuelve nombre del producto de un pedido especifico
+
+	// Método devuelve nombre del producto de un pedido especifico
 	public String dameProductoPedido(int id_pedido) {
 		String nombreProducto = "";
 		Statement miStatement;
 		try {
 			miStatement = this.conexion.createStatement();
-			ResultSet rs = miStatement.executeQuery("SELECT nombreProducto FROM productos WHERE id_producto in (SELECT id_producto FROM esta WHERE id_pedido =" + id_pedido + ")");
+			ResultSet rs = miStatement.executeQuery(
+					"SELECT nombreProducto FROM productos WHERE id_producto in (SELECT id_producto FROM esta WHERE id_pedido ="
+							+ id_pedido + ")");
 			while (rs.next()) {
 				nombreProducto = rs.getString("nombreProducto");
 			}
@@ -614,16 +669,19 @@ public class BDController {
 		}
 		return nombreProducto;
 	}
-	
-	//Método devuelve arraylist de pedidos
-	public ArrayList<Pedido> damePedidos(){
+
+	// Método devuelve arraylist de pedidos
+	public ArrayList<Pedido> damePedidos() {
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 		try {
 			Statement miStatement;
 			miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT * FROM pedidos");
 			while (rs.next()) {
-				pedidos.add(new Pedido (rs.getInt("id_pedido"), rs.getString("fechaRealizada"), rs.getString("fechaEntregaPrevista"), rs.getString("fechaDespachada"), rs.getString("fechaEntregada"), rs.getString("estadoPedido"), rs.getString("reviewCliente"), rs.getDouble("montoPedido"), rs.getDouble("gastosEnvio"), rs.getInt("id_cliente")));
+				pedidos.add(new Pedido(rs.getInt("id_pedido"), rs.getString("fechaRealizada"),
+						rs.getString("fechaEntregaPrevista"), rs.getString("fechaDespachada"),
+						rs.getString("fechaEntregada"), rs.getString("estadoPedido"), rs.getString("reviewCliente"),
+						rs.getDouble("montoPedido"), rs.getDouble("gastosEnvio"), rs.getInt("id_cliente")));
 			}
 			miStatement.close();
 			rs.close();
@@ -632,18 +690,18 @@ public class BDController {
 			System.out.println("Error en damePedidos");
 			e.printStackTrace();
 		}
-		
+
 		return pedidos;
 	}
-	
-	//Método devuelve un objeto amazon que coincida con un codigo
+
+	// Método devuelve un objeto amazon que coincida con un codigo
 	public Amazon dameAmazon(int id_amazon) {
 		Amazon amazon = new Amazon();
 		try {
 			Statement miStatement;
 			miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT * FROM amazon WHERE id_amazon =" + id_amazon);
-			while(rs.next()) {
+			while (rs.next()) {
 				amazon = new Amazon(rs.getInt("id_amazon"), rs.getString("pais"));
 			}
 			miStatement.close();
@@ -655,16 +713,16 @@ public class BDController {
 		}
 		return amazon;
 	}
-	
-	//Método devuelve todos los amazon
-	public ArrayList<Amazon> dameAmazons(){
+
+	// Método devuelve todos los amazon
+	public ArrayList<Amazon> dameAmazons() {
 		ArrayList<Amazon> amazons = new ArrayList<Amazon>();
 		try {
 			Statement miStatement;
 			miStatement = this.conexion.createStatement();
 			ResultSet rs = miStatement.executeQuery("SELECT * FROM amazon");
 			while (rs.next()) {
-				amazons.add(new Amazon (rs.getInt("id_amazon"), rs.getString("pais")));
+				amazons.add(new Amazon(rs.getInt("id_amazon"), rs.getString("pais")));
 			}
 			miStatement.close();
 			rs.close();
@@ -673,19 +731,24 @@ public class BDController {
 			System.out.println("Error en dameAmazons");
 			e.printStackTrace();
 		}
-		
+
 		return amazons;
 	}
-	
-	//Método devuelve todos los productos que pertenezcan a cierto amazon
-	public ArrayList<Producto> dameProductosAmazon(int id_amazon){
+
+	// Método devuelve todos los productos que pertenezcan a cierto amazon
+	public ArrayList<Producto> dameProductosAmazon(int id_amazon) {
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		Statement miStatement;
 		try {
 			miStatement = this.conexion.createStatement();
-			ResultSet rs = miStatement.executeQuery("SELECT * FROM productos WHERE id_departamento in (SELECT id_departamento FROM departamentos WHERE id_departamento in (SELECT id_departamento FROM tiene WHERE id_almacen in (SELECT id_almacen FROM almacenes WHERE id_amazon=" + id_amazon + ")))");
+			ResultSet rs = miStatement.executeQuery(
+					"SELECT * FROM productos WHERE id_departamento in (SELECT id_departamento FROM departamentos WHERE id_departamento in (SELECT id_departamento FROM tiene WHERE id_almacen in (SELECT id_almacen FROM almacenes WHERE id_amazon="
+							+ id_amazon + ")))");
 			while (rs.next()) {
-				productos.add(new Producto (rs.getInt("id_producto"), rs.getString("nombreProducto"), rs.getString("pais_produccion"), rs.getDouble("precio"), rs.getString("marca"), rs.getString("modelo"), rs.getString("especificaciones"), rs.getInt("existencias"), rs.getInt("id_departamento")));
+				productos.add(new Producto(rs.getInt("id_producto"), rs.getString("nombreProducto"),
+						rs.getString("pais_produccion"), rs.getDouble("precio"), rs.getString("marca"),
+						rs.getString("modelo"), rs.getString("especificaciones"), rs.getInt("existencias"),
+						rs.getInt("id_departamento")));
 			}
 			miStatement.close();
 			rs.close();
@@ -694,11 +757,11 @@ public class BDController {
 			System.out.println("Error en dameProductosAmazon");
 			e.printStackTrace();
 		}
-		
+
 		return productos;
 	}
-	
-	//Método elimina amazon de la base de datos
+
+	// Método elimina amazon de la base de datos
 	public void bajaAmazon(int id_amazon) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -710,8 +773,8 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método elimina proveedor de la base de datos
+
+	// Método elimina proveedor de la base de datos
 	public void bajaProveedor(int id_proveedor) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -723,8 +786,8 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método elimina empleado de la base de datos
+
+	// Método elimina empleado de la base de datos
 	public void bajaEmpleado(String dniEmpleado) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -736,8 +799,8 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método elimina almacen de la base de datos
+
+	// Método elimina almacen de la base de datos
 	public void bajaAlmacen(int id_almacen) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -749,8 +812,8 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método elimina seccion de la base de datos
+
+	// Método elimina seccion de la base de datos
 	public void bajaSeccion(int id_seccion) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -762,8 +825,8 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método elimina departamento de la base de datos
+
+	// Método elimina departamento de la base de datos
 	public void bajaDepartamento(int id_departamento) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -775,8 +838,8 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método elimina producto de la base de datos
+
+	// Método elimina producto de la base de datos
 	public void bajaProducto(int id_producto) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -788,8 +851,8 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método elimina cliente de la base de datos
+
+	// Método elimina cliente de la base de datos
 	public void bajaCliente(int id_cliente) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -801,8 +864,8 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método elimina pedido de la base de datos
+
+	// Método elimina pedido de la base de datos
 	public void bajaPedido(int id_pedido) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -814,8 +877,8 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método elimina servicio de la base de datos
+
+	// Método elimina servicio de la base de datos
 	public void bajaServicio(int id_servicio) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -827,12 +890,13 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método modifica amazon de la base de datos
+
+	// Método modifica amazon de la base de datos
 	public void modAmazon(Amazon amazon) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("UPDATE amazon SET pais = '" + amazon.getPais() + "' WHERE id_amazon = " + amazon.getId_amazon() + "");
+			miStatement.executeUpdate("UPDATE amazon SET pais = '" + amazon.getPais() + "' WHERE id_amazon = "
+					+ amazon.getId_amazon() + "");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -840,12 +904,15 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método modifica proveedor de la base de datos
+
+	// Método modifica proveedor de la base de datos
 	public void modProveedor(Proveedor proveedor) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("UPDATE proveedores SET nombreProveedor = '" + proveedor.getNombreProveedor() + "', direccionProveedor = '" + proveedor.getDireccion() + "', tlf = '" + proveedor.getTlf() + "', correoProveedor = '" + proveedor.getCorreoProveedor() + "' WHERE id_proveedor = " + proveedor.getId_proveedor() + "");
+			miStatement.executeUpdate("UPDATE proveedores SET nombreProveedor = '" + proveedor.getNombreProveedor()
+					+ "', direccionProveedor = '" + proveedor.getDireccion() + "', tlf = '" + proveedor.getTlf()
+					+ "', correoProveedor = '" + proveedor.getCorreoProveedor() + "' WHERE id_proveedor = "
+					+ proveedor.getId_proveedor() + "");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -853,13 +920,17 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método modifica empleado de la base de datos
+
+	// Método modifica empleado de la base de datos
 	public void modEmpleado(Empleado empleado, int id_seccion) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("UPDATE empleados SET nombreEmpleado = '" + empleado.getNombreEmpleado() + "', apellidosEmpleado = '" + empleado.getApellidoEmpleado() + "', direccion = '" + empleado.getDireccion() + "', tlf = '" + empleado.getTlf() + "', id_amazon = " + empleado.getId_amazon() + " WHERE dni = '" + empleado.getDni() + "'");
-			miStatement.executeUpdate("UPDATE pertenece SET id_seccion = " + id_seccion + " WHERE dniEmpleado = '" + empleado.getDni() + "'");
+			miStatement.executeUpdate("UPDATE empleados SET nombreEmpleado = '" + empleado.getNombreEmpleado()
+					+ "', apellidosEmpleado = '" + empleado.getApellidoEmpleado() + "', direccion = '"
+					+ empleado.getDireccion() + "', tlf = '" + empleado.getTlf() + "', id_amazon = "
+					+ empleado.getId_amazon() + " WHERE dni = '" + empleado.getDni() + "'");
+			miStatement.executeUpdate("UPDATE pertenece SET id_seccion = " + id_seccion + " WHERE dniEmpleado = '"
+					+ empleado.getDni() + "'");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -867,12 +938,14 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método modifica almacen de la base de datos
+
+	// Método modifica almacen de la base de datos
 	public void modAlmacen(Almacen almacen) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("UPDATE almacenes SET provincia = '" + almacen.getProvincia() + "', localidad = '" + almacen.getLocalidad() + "', id_amazon = " + almacen.getId_amazon() + " WHERE id_almacen = " + almacen.getId_almacen() + "");
+			miStatement.executeUpdate("UPDATE almacenes SET provincia = '" + almacen.getProvincia() + "', localidad = '"
+					+ almacen.getLocalidad() + "', id_amazon = " + almacen.getId_amazon() + " WHERE id_almacen = "
+					+ almacen.getId_almacen() + "");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -880,12 +953,13 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método modifica seccion de la base de datos
+
+	// Método modifica seccion de la base de datos
 	public void modSeccion(Seccion seccion) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("UPDATE secciones SET nombreSeccion = '" + seccion.getNombreSeccion() + "' WHERE id_seccion = " + seccion.getId_seccion() + "");
+			miStatement.executeUpdate("UPDATE secciones SET nombreSeccion = '" + seccion.getNombreSeccion()
+					+ "' WHERE id_seccion = " + seccion.getId_seccion() + "");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -893,12 +967,13 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método modifica departamento de la base de datos
+
+	// Método modifica departamento de la base de datos
 	public void modDepart(Departamento depart, int id_almacen) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("UPDATE departamentos SET nombreDepartamento = '" + depart.getNombreDepartamento() + "' WHERE id_departamento = " + depart.getId_departamento() + "");
+			miStatement.executeUpdate("UPDATE departamentos SET nombreDepartamento = '" + depart.getNombreDepartamento()
+					+ "' WHERE id_departamento = " + depart.getId_departamento() + "");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -906,12 +981,17 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método modifica producto de la base de datos
+
+	// Método modifica producto de la base de datos
 	public void modProducto(Producto producto) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("UPDATE productos SET pais_produccion = '" + producto.getPaisProduccion() + "', precio = " + producto.getPrecio() + ", nombreProducto = '" + producto.getNombreProducto() + "', marca = '" + producto.getMarca() + "', modelo = '" + producto.getModelo() + "', especificaciones = '" + producto.getEspecificaciones() + "', existencias = " + producto.getExistencias() + ", id_departamento = " + producto.getId_departamento() + " WHERE id_producto = " + producto.getId_producto() + "");
+			miStatement.executeUpdate("UPDATE productos SET pais_produccion = '" + producto.getPaisProduccion()
+					+ "', precio = " + producto.getPrecio() + ", nombreProducto = '" + producto.getNombreProducto()
+					+ "', marca = '" + producto.getMarca() + "', modelo = '" + producto.getModelo()
+					+ "', especificaciones = '" + producto.getEspecificaciones() + "', existencias = "
+					+ producto.getExistencias() + ", id_departamento = " + producto.getId_departamento()
+					+ " WHERE id_producto = " + producto.getId_producto() + "");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
@@ -919,15 +999,26 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método modifica cliente de la base de datos
+
+	// Método modifica cliente de la base de datos
 	public void modCliente(Cliente cliente) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			if(cliente.getDuracionSuscripcion().isEmpty() || cliente.getDuracionSuscripcion().equalsIgnoreCase("null")) {
-				miStatement.executeUpdate("UPDATE clientes SET nombre_cliente = '" + cliente.getNombreCliente() + "', apellidos_cliente = '" + cliente.getApellidoCliente() + "', direccion = '" + cliente.getDireccion() + "', correo_cliente = '" + cliente.getCorreoCliente() + "', tlf = '" + cliente.getTlf() + "', tipoSuscripcion = '" + cliente.getTipoSuscripcion() + "', duracion_suscripcion = null, id_amazon = " + cliente.getId_amazon() + " WHERE id_cliente = " + cliente.getId_cliente() + "");
-			}else {
-				miStatement.executeUpdate("UPDATE clientes SET nombre_cliente = '" + cliente.getNombreCliente() + "', apellidos_cliente = '" + cliente.getApellidoCliente() + "', direccion = '" + cliente.getDireccion() + "', correo_cliente = '" + cliente.getCorreoCliente() + "', tlf = '" + cliente.getTlf() + "', tipoSuscripcion = '" + cliente.getTipoSuscripcion() + "', duracion_suscripcion = '" + cliente.getDuracionSuscripcion() + "', id_amazon = " + cliente.getId_amazon() + " WHERE id_cliente = " + cliente.getId_cliente() + "");
+			if (cliente.getDuracionSuscripcion().isEmpty()
+					|| cliente.getDuracionSuscripcion().equalsIgnoreCase("null")) {
+				miStatement.executeUpdate("UPDATE clientes SET nombre_cliente = '" + cliente.getNombreCliente()
+						+ "', apellidos_cliente = '" + cliente.getApellidoCliente() + "', direccion = '"
+						+ cliente.getDireccion() + "', correo_cliente = '" + cliente.getCorreoCliente() + "', tlf = '"
+						+ cliente.getTlf() + "', tipoSuscripcion = '" + cliente.getTipoSuscripcion()
+						+ "', duracion_suscripcion = null, id_amazon = " + cliente.getId_amazon()
+						+ " WHERE id_cliente = " + cliente.getId_cliente() + "");
+			} else {
+				miStatement.executeUpdate("UPDATE clientes SET nombre_cliente = '" + cliente.getNombreCliente()
+						+ "', apellidos_cliente = '" + cliente.getApellidoCliente() + "', direccion = '"
+						+ cliente.getDireccion() + "', correo_cliente = '" + cliente.getCorreoCliente() + "', tlf = '"
+						+ cliente.getTlf() + "', tipoSuscripcion = '" + cliente.getTipoSuscripcion()
+						+ "', duracion_suscripcion = '" + cliente.getDuracionSuscripcion() + "', id_amazon = "
+						+ cliente.getId_amazon() + " WHERE id_cliente = " + cliente.getId_cliente() + "");
 			}
 			miStatement.close();
 		} catch (SQLException e) {
@@ -936,22 +1027,50 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método modifica pedido de la base de datos
+
+	// Método modifica pedido de la base de datos
 	public void modPedido(Pedido pedido) {
-		System.out.println("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada() + "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista() + "', fechaDespachada = '" + pedido.getFechaDespachada() + "', fechaEntregada = '" + pedido.getFechaEntregada() + "', estadoPedido = '" + pedido.getEstadoPedido() + "', reviewCliente = '" + pedido.getReview() + "', montoPedido = " + pedido.getMonto() + ", gastosEnvio = " + pedido.getGastosEnvio() + ", id_cliente = " + pedido.getId_cliente() + " WHERE id_pedido = " + pedido.getId_pedido() + "");
+		System.out.println("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada()
+				+ "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista() + "', fechaDespachada = '"
+				+ pedido.getFechaDespachada() + "', fechaEntregada = '" + pedido.getFechaEntregada()
+				+ "', estadoPedido = '" + pedido.getEstadoPedido() + "', reviewCliente = '" + pedido.getReview()
+				+ "', montoPedido = " + pedido.getMonto() + ", gastosEnvio = " + pedido.getGastosEnvio()
+				+ ", id_cliente = " + pedido.getId_cliente() + " WHERE id_pedido = " + pedido.getId_pedido() + "");
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			if(pedido.getFechaEntregada().isEmpty() || pedido.getFechaEntregada().equalsIgnoreCase("null")) {
-				if(pedido.getReview().isEmpty() || pedido.getReview().equalsIgnoreCase("null")) {
-					if(pedido.getGastosEnvio() == 0 || Double.toString(pedido.getGastosEnvio()).isEmpty()) {
-						miStatement.executeUpdate("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada() + "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista() + "', fechaDespachada = '" + pedido.getFechaDespachada() + "', fechaEntregada = null , estadoPedido = '" + pedido.getEstadoPedido() + "', reviewCliente = null , montoPedido = " + pedido.getMonto() + ", gastosEnvio = null , id_cliente = " + pedido.getId_cliente() + " WHERE id_pedido = " + pedido.getId_pedido() + "");
+			if (pedido.getFechaEntregada().isEmpty() || pedido.getFechaEntregada().equalsIgnoreCase("null")) {
+				if (pedido.getReview().isEmpty() || pedido.getReview().equalsIgnoreCase("null")) {
+					if (pedido.getGastosEnvio() == 0 || Double.toString(pedido.getGastosEnvio()).isEmpty()) {
+						miStatement.executeUpdate("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada()
+								+ "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista()
+								+ "', fechaDespachada = '" + pedido.getFechaDespachada()
+								+ "', fechaEntregada = null , estadoPedido = '" + pedido.getEstadoPedido()
+								+ "', reviewCliente = null , montoPedido = " + pedido.getMonto()
+								+ ", gastosEnvio = null , id_cliente = " + pedido.getId_cliente()
+								+ " WHERE id_pedido = " + pedido.getId_pedido() + "");
 					}
-					miStatement.executeUpdate("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada() + "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista() + "', fechaDespachada = '" + pedido.getFechaDespachada() + "', fechaEntregada = null , estadoPedido = '" + pedido.getEstadoPedido() + "', reviewCliente = null , montoPedido = " + pedido.getMonto() + ", gastosEnvio = " + pedido.getGastosEnvio() + ", id_cliente = " + pedido.getId_cliente() + " WHERE id_pedido = " + pedido.getId_pedido() + "");
+					miStatement.executeUpdate("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada()
+							+ "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista()
+							+ "', fechaDespachada = '" + pedido.getFechaDespachada()
+							+ "', fechaEntregada = null , estadoPedido = '" + pedido.getEstadoPedido()
+							+ "', reviewCliente = null , montoPedido = " + pedido.getMonto() + ", gastosEnvio = "
+							+ pedido.getGastosEnvio() + ", id_cliente = " + pedido.getId_cliente()
+							+ " WHERE id_pedido = " + pedido.getId_pedido() + "");
 				}
-				miStatement.executeUpdate("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada() + "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista() + "', fechaDespachada = '" + pedido.getFechaDespachada() + "', fechaEntregada = null , estadoPedido = '" + pedido.getEstadoPedido() + "', reviewCliente = '" + pedido.getReview() + "', montoPedido = " + pedido.getMonto() + ", gastosEnvio = " + pedido.getGastosEnvio() + ", id_cliente = " + pedido.getId_cliente() + " WHERE id_pedido = " + pedido.getId_pedido() + "");
-			}else {
-				miStatement.executeUpdate("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada() + "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista() + "', fechaDespachada = '" + pedido.getFechaDespachada() + "', fechaEntregada = '" + pedido.getFechaEntregada() + "', estadoPedido = '" + pedido.getEstadoPedido() + "', reviewCliente = '" + pedido.getReview() + "', montoPedido = " + pedido.getMonto() + ", gastosEnvio = " + pedido.getGastosEnvio() + ", id_cliente = " + pedido.getId_cliente() + " WHERE id_pedido = " + pedido.getId_pedido() + "");
+				miStatement.executeUpdate("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada()
+						+ "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista() + "', fechaDespachada = '"
+						+ pedido.getFechaDespachada() + "', fechaEntregada = null , estadoPedido = '"
+						+ pedido.getEstadoPedido() + "', reviewCliente = '" + pedido.getReview() + "', montoPedido = "
+						+ pedido.getMonto() + ", gastosEnvio = " + pedido.getGastosEnvio() + ", id_cliente = "
+						+ pedido.getId_cliente() + " WHERE id_pedido = " + pedido.getId_pedido() + "");
+			} else {
+				miStatement.executeUpdate("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada()
+						+ "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista() + "', fechaDespachada = '"
+						+ pedido.getFechaDespachada() + "', fechaEntregada = '" + pedido.getFechaEntregada()
+						+ "', estadoPedido = '" + pedido.getEstadoPedido() + "', reviewCliente = '" + pedido.getReview()
+						+ "', montoPedido = " + pedido.getMonto() + ", gastosEnvio = " + pedido.getGastosEnvio()
+						+ ", id_cliente = " + pedido.getId_cliente() + " WHERE id_pedido = " + pedido.getId_pedido()
+						+ "");
 			}
 			miStatement.close();
 		} catch (SQLException e) {
@@ -960,12 +1079,15 @@ public class BDController {
 			e.printStackTrace();
 		}
 	}
-	
-	//Método modifica servicio de la base de datos
+
+	// Método modifica servicio de la base de datos
 	public void modServ(Servicio_Postventa servPost) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
-			miStatement.executeUpdate("UPDATE servicios_postventa SET id_pedido = " + servPost.getId_pedido() + ", tipoServicio = '" + servPost.getTipoServicio() + "', estadoServicio = '" + servPost.getEstadoCaso() + "', dniEmpleado = '" + servPost.getDni() + "' WHERE id_servicio = " + servPost.getId_servicio() + "");
+			miStatement.executeUpdate("UPDATE servicios_postventa SET id_pedido = " + servPost.getId_pedido()
+					+ ", tipoServicio = '" + servPost.getTipoServicio() + "', estadoServicio = '"
+					+ servPost.getEstadoCaso() + "', dniEmpleado = '" + servPost.getDni() + "' WHERE id_servicio = "
+					+ servPost.getId_servicio() + "");
 			miStatement.close();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
