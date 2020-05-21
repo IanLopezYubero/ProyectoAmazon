@@ -7,13 +7,6 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
-/**
- * Clase que controla la base de datos con métodos
- * 
- * @author Ian Lopez
- * @version 19/05/2020
- */
-
 public class BDController {
 	private Connection conexion;
 
@@ -42,11 +35,7 @@ public class BDController {
 		this.conexion = conexion;
 	}
 
-	/**
-	 * Método para insertar nueva seccion en la base de datos
-	 * 
-	 * @param seccion
-	 */
+	// Método para insertar nueva seccion en la base de datos
 	public void insertarSeccion(Seccion seccion) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -60,11 +49,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método para insertar nuevo empleado en la base de datos
-	 * 
-	 * @param empleado, id_seccion
-	 */
+	// Método para insertar nuevo empleado en la base de datos
 	public void insertarEmpleado(Empleado empleado, int id_seccion) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -80,11 +65,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método para insertar nuevo servicio postventa en la base de datos
-	 * 
-	 * @param servPost
-	 */
+	// Método para insertar nuevo servicio postventa en la base de datos
 	public void insertarServPost(Servicio_Postventa servPost) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -99,11 +80,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método para insertar nuevo producto en la base de datos
-	 * 
-	 * @param producto
-	 */
+	// Método para insertar nuevo producto en la base de datos
 	public void insertarProducto(Producto producto) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -120,11 +97,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método para insertar nuevo pedido a la base de datos
-	 * 
-	 * @param pedido, id_producto
-	 */
+	// Método para insertar nuevo pedido a la base de datos
 	public void insertarPedido(Pedido pedido, int id_producto) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -162,11 +135,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método para insertar nuevo departamento en la base de datos
-	 * 
-	 * @param departamento, id_almacen
-	 */
+	// Método para insertar nuevo departamento en la base de datos
 	public void insertarDepartamento(Departamento departamento, int id_almacen) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -182,11 +151,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método para insertar nuevo almacen en la base de datos
-	 * 
-	 * @param almacen, id_departamento
-	 */
+	// Método para insertar nuevo almacen en la base de datos
 	public void insertarAlmacen(Almacen almacen, int id_departamento) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -202,11 +167,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método para insertar un nuevo proveedor a la base de datos
-	 * 
-	 * @param proveedor, id_amazon
-	 */
+	// Método para insertar un nuevo proveedor a la base de datos
 	public void insertarProveedor(Proveedor proveedor, int id_amazon) {
 		String cadena = "INSERT INTO proveedores VALUES (" + proveedor.getId_proveedor() + ", '"
 				+ proveedor.getNombreProveedor() + "', '" + proveedor.getDireccion() + "', '" + proveedor.getTlf()
@@ -224,11 +185,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método para insertar nuevo amazon en la base de datos
-	 * 
-	 * @param amazon
-	 */
+	// Método para insertar nuevo amazon en la base de datos
 	public void insertarAmazon(Amazon amazon) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -242,11 +199,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método para insertar un nuevo cliente a la base de datos
-	 * 
-	 * @param cliente
-	 */
+	// Método para insertar un nuevo cliente a la base de datos
 	public void insertarCliente(Cliente cliente) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -271,12 +224,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método para validar dni del empleado
-	 * 
-	 * @param dni
-	 * @return boolean
-	 */
+	// Método para validar dni del empleado
 	public boolean existeEmpleado(String dni) {
 		boolean existe = false;
 		try {
@@ -295,12 +243,7 @@ public class BDController {
 		return existe;
 	}
 
-	/**
-	 * Método para calcular el identificador maximo de servicios
-	 * 
-	 * @param
-	 * @return int id_servicio
-	 */
+	// Método para calcular el identificador maximo de servicios
 	public int calcularIdServicio() {
 		int id_servicio = 1;
 		try {
@@ -319,12 +262,7 @@ public class BDController {
 		return id_servicio;
 	}
 
-	/**
-	 * Método para calcular el identificador maximo de pedidos
-	 * 
-	 * @param
-	 * @return int id_pedido
-	 */
+	// Método para calcular el identificador maximo de pedidos
 	public int calcularIdPedido() {
 		int id_pedido = 1;
 		try {
@@ -343,12 +281,7 @@ public class BDController {
 		return id_pedido;
 	}
 
-	/**
-	 * Método para calcular el identificador maximo de productos
-	 * 
-	 * @param
-	 * @return int id_producto
-	 */
+	// Método para calcular el identificador maximo de productos
 	public int calcularIdProducto() {
 		int id_producto = 1;
 		try {
@@ -367,12 +300,7 @@ public class BDController {
 		return id_producto;
 	}
 
-	/**
-	 * Método para calcular el identificador maximo de secciones
-	 * 
-	 * @param
-	 * @return int id_seccion
-	 */
+	// Método para calcular el identificador maximo de secciones
 	public int calcularIdSeccion() {
 		int id_seccion = 1;
 		try {
@@ -391,12 +319,7 @@ public class BDController {
 		return id_seccion;
 	}
 
-	/**
-	 * Método para calcular el identificador maximo de proveedores
-	 * 
-	 * @param
-	 * @return int id_proveedor
-	 */
+	// Método para calcular el identificador maximo de proveedores
 	public int calcularIdProveedor() {
 		int id_proveedor = 1;
 		try {
@@ -415,12 +338,7 @@ public class BDController {
 		return id_proveedor;
 	}
 
-	/**
-	 * Método para calcular el identificador maximo de amazons
-	 * 
-	 * @param
-	 * @return int id_amazon
-	 */
+	// Método para calcular el identificador maximo de amazons
 	public int calcularIdAmazon() {
 		int id_amazon = 1;
 		try {
@@ -439,12 +357,7 @@ public class BDController {
 		return id_amazon;
 	}
 
-	/**
-	 * Método para calcular el identificador maximo de almacenes
-	 * 
-	 * @param
-	 * @return int id_almacen
-	 */
+	// Método para calcular el identificador maximo de almacenes
 	public int calcularIdAlmacen() {
 		int id_almacen = 1;
 		try {
@@ -463,12 +376,7 @@ public class BDController {
 		return id_almacen;
 	}
 
-	/**
-	 * Método calcular el identificador maximo de departamentos
-	 * 
-	 * @param
-	 * @return int id_departamento
-	 */
+	// Método calcular el identificador maximo de departamentos
 	public int calcularIdDepartamento() {
 		int id_departamento = 1;
 		try {
@@ -487,12 +395,7 @@ public class BDController {
 		return id_departamento;
 	}
 
-	/**
-	 * Método para calcular el identificador maximo de clientes
-	 * 
-	 * @param
-	 * @return int id_cliente
-	 */
+	// Método para calcular el identificador maximo de clientes
 	public int calcularIdCliente() {
 		int id_cliente = 1;
 		try {
@@ -511,12 +414,7 @@ public class BDController {
 		return id_cliente;
 	}
 
-	/**
-	 * Método para comprobar existencia de departamento
-	 * 
-	 * @param String nomDepart
-	 * @return boolean
-	 */
+	// Método para comprobar existencia de departamento
 	public boolean existeDepart(String nomDepart) {
 		boolean existe = false;
 		try {
@@ -536,12 +434,7 @@ public class BDController {
 		return existe;
 	}
 
-	/**
-	 * Método para comprobar existencia de cliente
-	 * 
-	 * @param int id_cliente
-	 * @return boolean
-	 */
+	// Método para comprobar existencia de cliente
 	public boolean existeCliente(int id_cliente) {
 		boolean existe = false;
 		try {
@@ -560,12 +453,7 @@ public class BDController {
 		return existe;
 	}
 
-	/**
-	 * Método comprobar existencia seccion
-	 * 
-	 * @param String nombreSeccion
-	 * @return boolean
-	 */
+	// Método comprobar existencia seccion
 	public boolean existeSeccion(String nombreSeccion) {
 		boolean existe = false;
 		try {
@@ -585,12 +473,7 @@ public class BDController {
 		return existe;
 	}
 
-	/**
-	 * Método devuelve listado de almacenes
-	 * 
-	 * @param
-	 * @return ArrayList<Almacen> almacenes
-	 */
+	// Método devuelve listado de almacenes
 	public ArrayList<Almacen> dameAlmacenes() {
 		ArrayList<Almacen> almacenes = new ArrayList<Almacen>();
 		Statement miStatement;
@@ -609,12 +492,7 @@ public class BDController {
 		return almacenes;
 	}
 
-	/**
-	 * Método devuelve empleado de cierta seccion
-	 * 
-	 * @param String seccion
-	 * @return ArrayList<Empleado> empleados
-	 */
+	// Método devuelve empleado de cierta seccion
 	public ArrayList<Empleado> dameEmpleadosSeccion(String seccion) {
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		Statement miStatement;
@@ -636,12 +514,7 @@ public class BDController {
 		return empleados;
 	}
 
-	/**
-	 * Método devuelve listado de empleados
-	 * 
-	 * @param
-	 * @return ArrayList<Empleado> empleados
-	 */
+	// Método devuelve listado de empleados
 	public ArrayList<Empleado> dameEmpleados() {
 		ArrayList<Empleado> empleados = new ArrayList<Empleado>();
 		Statement miStatement;
@@ -661,12 +534,7 @@ public class BDController {
 		return empleados;
 	}
 
-	/**
-	 * Método devuelve listado de departamentos
-	 * 
-	 * @param
-	 * @return ArrayList<Departamento> departamentos
-	 */
+	// Método devuelve listado de departamentos
 	public ArrayList<Departamento> dameDepartamentos() {
 		ArrayList<Departamento> departamentos = new ArrayList<Departamento>();
 		Statement miStatement;
@@ -684,12 +552,7 @@ public class BDController {
 		return departamentos;
 	}
 
-	/**
-	 * Método devuele listado de secciones
-	 * 
-	 * @param
-	 * @return ArrayList<Seccion> secciones
-	 */
+	// Método devuele listado de secciones
 	public ArrayList<Seccion> dameSecciones() {
 		ArrayList<Seccion> secciones = new ArrayList<Seccion>();
 		Statement miStatement;
@@ -707,12 +570,7 @@ public class BDController {
 		return secciones;
 	}
 
-	/**
-	 * Método devuele listado de servicios
-	 * 
-	 * @param
-	 * @return ArrayList<Servicio_Postventa> servicios
-	 */
+	// Método devuele listado de servicios
 	public ArrayList<Servicio_Postventa> dameServicios() {
 		ArrayList<Servicio_Postventa> servicios = new ArrayList<Servicio_Postventa>();
 		Statement miStatement;
@@ -731,12 +589,7 @@ public class BDController {
 		return servicios;
 	}
 
-	/**
-	 * Método devuelve array de clientes
-	 * 
-	 * @param
-	 * @return ArrayList<Cliente> clientes
-	 */
+	// Método devuelve array de clientes
 	public ArrayList<Cliente> dameClientes() {
 		ArrayList<Cliente> clientes = new ArrayList<Cliente>();
 		Statement miStatement;
@@ -757,12 +610,7 @@ public class BDController {
 		return clientes;
 	}
 
-	/**
-	 * Método devuelve array de productos
-	 * 
-	 * @param
-	 * @return ArrayList<Producto> productos
-	 */
+	// Método devuelve array de productos
 	public ArrayList<Producto> dameProductos() {
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		Statement miStatement;
@@ -783,12 +631,7 @@ public class BDController {
 		return productos;
 	}
 
-	/**
-	 * Método devuelve array de proveedores
-	 * 
-	 * @param
-	 * @return ArrayList<Proveedor> proveedores
-	 */
+	// Método devuelve array de proveedores
 	public ArrayList<Proveedor> dameProveedores() {
 		ArrayList<Proveedor> proveedores = new ArrayList<Proveedor>();
 		Statement miStatement;
@@ -807,12 +650,7 @@ public class BDController {
 		return proveedores;
 	}
 
-	/**
-	 * Método devuelve nombre del producto de un pedido especifico
-	 * 
-	 * @param int id_pedido
-	 * @return String nombreProducto
-	 */
+	// Método devuelve nombre del producto de un pedido especifico
 	public String dameProductoPedido(int id_pedido) {
 		String nombreProducto = "";
 		Statement miStatement;
@@ -832,12 +670,7 @@ public class BDController {
 		return nombreProducto;
 	}
 
-	/**
-	 * Método devuelve arraylist de pedidos
-	 * 
-	 * @param
-	 * @return ArrayList<Pedido> pedidos
-	 */
+	// Método devuelve arraylist de pedidos
 	public ArrayList<Pedido> damePedidos() {
 		ArrayList<Pedido> pedidos = new ArrayList<Pedido>();
 		try {
@@ -861,12 +694,7 @@ public class BDController {
 		return pedidos;
 	}
 
-	/**
-	 * Método devuelve un objeto amazon que coincida con un codigo
-	 * 
-	 * @param int id_amazon
-	 * @return amazon
-	 */
+	// Método devuelve un objeto amazon que coincida con un codigo
 	public Amazon dameAmazon(int id_amazon) {
 		Amazon amazon = new Amazon();
 		try {
@@ -886,12 +714,7 @@ public class BDController {
 		return amazon;
 	}
 
-	/**
-	 * Método devuelve todos los amazon
-	 * 
-	 * @param
-	 * @return ArrayList<Amazon> amazons
-	 */
+	// Método devuelve todos los amazon
 	public ArrayList<Amazon> dameAmazons() {
 		ArrayList<Amazon> amazons = new ArrayList<Amazon>();
 		try {
@@ -912,12 +735,7 @@ public class BDController {
 		return amazons;
 	}
 
-	/**
-	 * Método devuelve todos los productos que pertenezcan a cierto amazon
-	 * 
-	 * @param int id_amazon
-	 * @return ArrayList<Producto> productos
-	 */
+	// Método devuelve todos los productos que pertenezcan a cierto amazon
 	public ArrayList<Producto> dameProductosAmazon(int id_amazon) {
 		ArrayList<Producto> productos = new ArrayList<Producto>();
 		Statement miStatement;
@@ -943,12 +761,7 @@ public class BDController {
 		return productos;
 	}
 
-	/**
-	 * Método elimina amazon de la base de datos
-	 * 
-	 * @param int id_amazon
-	 * @return
-	 */
+	// Método elimina amazon de la base de datos
 	public void bajaAmazon(int id_amazon) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -961,12 +774,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método elimina proveedor de la base de datos
-	 * 
-	 * @param int id_proveedor
-	 * @return
-	 */
+	// Método elimina proveedor de la base de datos
 	public void bajaProveedor(int id_proveedor) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -979,12 +787,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método elimina empleado de la base de datos
-	 * 
-	 * @param String dniEmpleado
-	 * @return
-	 */
+	// Método elimina empleado de la base de datos
 	public void bajaEmpleado(String dniEmpleado) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -997,12 +800,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método elimina almacen de la base de datos
-	 * 
-	 * @param int id_almacen
-	 * @return
-	 */
+	// Método elimina almacen de la base de datos
 	public void bajaAlmacen(int id_almacen) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1015,12 +813,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método elimina seccion de la base de datos
-	 * 
-	 * @param int id_seccion
-	 * @return
-	 */
+	// Método elimina seccion de la base de datos
 	public void bajaSeccion(int id_seccion) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1033,12 +826,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método elimina departamento de la base de datos
-	 * 
-	 * @param int id_departamento
-	 * @return
-	 */
+	// Método elimina departamento de la base de datos
 	public void bajaDepartamento(int id_departamento) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1051,12 +839,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método elimina producto de la base de datos
-	 * 
-	 * @param int id_producto
-	 * @return
-	 */
+	// Método elimina producto de la base de datos
 	public void bajaProducto(int id_producto) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1069,12 +852,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método elimina cliente de la base de datos
-	 * 
-	 * @param int id_cliente
-	 * @return
-	 */
+	// Método elimina cliente de la base de datos
 	public void bajaCliente(int id_cliente) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1087,12 +865,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método elimina pedido de la base de datos
-	 * 
-	 * @param int id_pedido
-	 * @return
-	 */
+	// Método elimina pedido de la base de datos
 	public void bajaPedido(int id_pedido) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1105,12 +878,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método elimina servicio de la base de datos
-	 * 
-	 * @param int id_servicio
-	 * @return
-	 */
+	// Método elimina servicio de la base de datos
 	public void bajaServicio(int id_servicio) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1123,12 +891,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método modifica amazon de la base de datos
-	 * 
-	 * @param Amazon amazon
-	 * @return
-	 */
+	// Método modifica amazon de la base de datos
 	public void modAmazon(Amazon amazon) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1142,12 +905,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método modifica proveedor de la base de datos
-	 * 
-	 * @param Proveedor proveedor
-	 * @return
-	 */
+	// Método modifica proveedor de la base de datos
 	public void modProveedor(Proveedor proveedor) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1163,12 +921,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método modifica empleado de la base de datos
-	 * 
-	 * @param Empleado empleado, int id_seccion
-	 * @return
-	 */
+	// Método modifica empleado de la base de datos
 	public void modEmpleado(Empleado empleado, int id_seccion) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1186,12 +939,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método modifica almacen de la base de datos
-	 * 
-	 * @param Almacen almacen
-	 * @return
-	 */
+	// Método modifica almacen de la base de datos
 	public void modAlmacen(Almacen almacen) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1206,12 +954,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método modifica seccion de la base de datos
-	 * 
-	 * @param Seccion seccion
-	 * @return
-	 */
+	// Método modifica seccion de la base de datos
 	public void modSeccion(Seccion seccion) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1225,12 +968,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método modifica departamento de la base de datos
-	 * 
-	 * @param Departamento depart, int id_almacen
-	 * @return
-	 */
+	// Método modifica departamento de la base de datos
 	public void modDepart(Departamento depart, int id_almacen) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1244,12 +982,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método modifica producto de la base de datos
-	 * 
-	 * @param Producto producto
-	 * @return
-	 */
+	// Método modifica producto de la base de datos
 	public void modProducto(Producto producto) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1267,12 +1000,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método modifica cliente de la base de datos
-	 * 
-	 * @param Cliente cliente
-	 * @return
-	 */
+	// Método modifica cliente de la base de datos
 	public void modCliente(Cliente cliente) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
@@ -1300,12 +1028,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método modifica pedido de la base de datos
-	 * 
-	 * @param Pedido pedido
-	 * @return
-	 */
+	// Método modifica pedido de la base de datos
 	public void modPedido(Pedido pedido) {
 		System.out.println("UPDATE pedidos SET fechaRealizada = '" + pedido.getFechaRealizada()
 				+ "', fechaEntregaPrevista = '" + pedido.getFechaEntregaPrevista() + "', fechaDespachada = '"
@@ -1357,12 +1080,7 @@ public class BDController {
 		}
 	}
 
-	/**
-	 * Método modifica servicio de la base de datos
-	 * 
-	 * @param Servicio_Postventa servPost
-	 * @return
-	 */
+	// Método modifica servicio de la base de datos
 	public void modServ(Servicio_Postventa servPost) {
 		try {
 			Statement miStatement = this.conexion.createStatement();
