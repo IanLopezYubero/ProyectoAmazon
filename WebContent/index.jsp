@@ -15,11 +15,6 @@
 </head>
 <body>
 	<%
-		/**
-		 * En esta como en todas las páginas .jsp, he indentado, tabulado y creado espacios para mejorar la legibilidad para futuros programadores
-		 * No tener el código muy pegado, no dejar lineas muy largas y en vez haciendo un simple enter, y continuar en la siguiente línea mejora mucho a la vista.
-		 */
-
 		BDController controladorBD = new BDController();
 		ArrayList<Amazon> amazons = controladorBD.dameAmazons();
 		System.out.println(amazons.size());
