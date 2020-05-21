@@ -1,5 +1,12 @@
 package amazon;
 
+/**
+ * Clase para usar los objetos de tipo Servicio_postventa
+ * 
+ * @author Ian Lopez
+ * @version 19/05/2020
+ */
+
 public class Servicio_Postventa {
 	private int id_servicio;
 	private int id_pedido;

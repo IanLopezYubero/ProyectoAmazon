@@ -1,5 +1,12 @@
 package amazon;
 
+/**
+ * Clase para usar los objetos de tipo Proveedor
+ * 
+ * @author Ian Lopez
+ * @version 19/05/2020
+ */
+
 public class Proveedor {
 	private int id_proveedor;
 	private String nombreProveedor;

@@ -1,5 +1,12 @@
 package amazon;
 
+/**
+ * Clase para usar los objetos de tipo Empleado
+ * 
+ * @author Ian Lopez
+ * @version 19/05/2020
+ */
+
 public class Empleado {
 	private String dni;
 	private int id_amazon;

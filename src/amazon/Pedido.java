@@ -1,5 +1,12 @@
 package amazon;
 
+/**
+ * Clase para usar los objetos de tipo Pedido
+ * 
+ * @author Ian Lopez
+ * @version 19/05/2020
+ */
+
 public class Pedido {
 	private int id_pedido;
 	private int id_cliente;

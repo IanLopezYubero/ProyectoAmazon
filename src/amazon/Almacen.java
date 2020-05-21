@@ -1,5 +1,12 @@
 package amazon;
 
+/**
+ * Clase para usar los objetos de tipo Almacen
+ * 
+ * @author Ian Lopez
+ * @version 19/05/2020
+ */
+
 public class Almacen {
 	private int id_almacen;
 	private String provincia;

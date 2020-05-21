@@ -1,5 +1,12 @@
 package amazon;
 
+/**
+ * Clase para usar los objetos de tipo Amazon
+ * 
+ * @author Ian Lopez
+ * @version 19/05/2020
+ */
+
 public class Amazon {
 
 	private int id_amazon;

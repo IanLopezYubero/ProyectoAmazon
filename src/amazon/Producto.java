@@ -1,5 +1,12 @@
 package amazon;
 
+/**
+ * Clase para usar los objetos de tipo Producto
+ * 
+ * @author Ian Lopez
+ * @version 19/05/2020
+ */
+
 public class Producto {
 	private int id_producto;
 	private String nombreProducto;

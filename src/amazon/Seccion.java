@@ -1,5 +1,12 @@
 package amazon;
 
+/**
+ * Clase para usar los objetos de tipo Seccion
+ * 
+ * @author Ian Lopez
+ * @version 19/05/2020
+ */
+
 public class Seccion {
 	private int id_seccion;
 	private String nombreSeccion;
