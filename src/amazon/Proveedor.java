@@ -13,11 +13,22 @@ public class Proveedor {
 	private String direccion;
 	private String tlf;
 	private String correoProveedor;
-	
+
+	/**
+	 * Constructor de la clase vacio
+	 * 
+	 * @param
+	 */
 	public Proveedor() {
 		super();
 	}
 
+	/**
+	 * Constructor de la clase que recibe todas las variables
+	 * 
+	 * @param int id_proveedor, String nombreProveedor, String direccion, String
+	 *            tlf, String correoProveedor
+	 */
 	public Proveedor(int id_proveedor, String nombreProveedor, String direccion, String tlf, String correoProveedor) {
 		super();
 		this.id_proveedor = id_proveedor;
@@ -66,6 +77,5 @@ public class Proveedor {
 	public void setCorreoProveedor(String correoProveedor) {
 		this.correoProveedor = correoProveedor;
 	}
-	
-	
+
 }

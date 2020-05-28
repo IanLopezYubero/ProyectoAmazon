@@ -14,10 +14,21 @@ public class Servicio_Postventa {
 	private String tipoServicio;
 	private String estadoCaso;
 
+	/**
+	 * Constructor de la clase vacio
+	 * 
+	 * @param
+	 */
 	public Servicio_Postventa() {
 		super();
 	}
 
+	/**
+	 * Constructor de la clase que recibe todas las variables
+	 * 
+	 * @param int id_servicio, int id_pedido, String dni, String tipoServicio,
+	 *            String estadoCaso
+	 */
 	public Servicio_Postventa(int id_servicio, int id_pedido, String dni, String tipoServicio, String estadoCaso) {
 		super();
 		this.id_servicio = id_servicio;

@@ -23,6 +23,11 @@ import java.util.ArrayList;
 public class BDController {
 	private Connection conexion;
 
+	/**
+	 * Constructor vacio del controlador de la base de datos
+	 * 
+	 * @param
+	 */
 	public BDController() {
 		super();
 		try {
@@ -40,10 +45,20 @@ public class BDController {
 		}
 	}
 
+	/**
+	 * Método para recibir la conexion
+	 * 
+	 * @param
+	 */
 	public Connection getConexion() {
 		return conexion;
 	}
 
+	/**
+	 * Método para realizar la conexion con la base de datos
+	 * 
+	 * @param
+	 */
 	public void setConexion(Connection conexion) {
 		this.conexion = conexion;
 	}

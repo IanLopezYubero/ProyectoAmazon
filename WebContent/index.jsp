@@ -15,6 +15,12 @@
 </head>
 <body>
 	<%
+		/**
+		 * Archivo jsp que muestra el indice de la web
+		 * 
+		 * @author Ian Lopez
+		 * @version 19/05/2020
+		 */
 		BDController controladorBD = new BDController();
 		ArrayList<Amazon> amazons = controladorBD.dameAmazons();
 		System.out.println(amazons.size());

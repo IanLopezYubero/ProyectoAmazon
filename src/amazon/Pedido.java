@@ -18,14 +18,27 @@ public class Pedido {
 	private String review;
 	private double monto;
 	private double gastosEnvio;
-	
+
+	/**
+	 * Constructor de la clase vacio
+	 * 
+	 * @param
+	 */
 	public Pedido() {
 		super();
 	}
 
-	public Pedido(int id_pedido, String fechaRealizada, String fechaEntregaPrevista,
-			String fechaDespachada, String fechaEntregada, String estadoPedido, String review, double monto,
-			double gastosEnvio, int id_cliente) {
+	/**
+	 * Constructor de la clase que recibe todas las variables
+	 * 
+	 * @param int id_pedido, String fechaRealizada, String fechaEntregaPrevista,
+	 *            String fechaDespachada, String fechaEntregada, String
+	 *            estadoPedido, String review, double monto, double gastosEnvio, int
+	 *            id_cliente
+	 */
+	public Pedido(int id_pedido, String fechaRealizada, String fechaEntregaPrevista, String fechaDespachada,
+			String fechaEntregada, String estadoPedido, String review, double monto, double gastosEnvio,
+			int id_cliente) {
 		super();
 		this.id_pedido = id_pedido;
 		this.id_cliente = id_cliente;
@@ -118,6 +131,5 @@ public class Pedido {
 	public void setGastosEnvio(double gastosEnvio) {
 		this.gastosEnvio = gastosEnvio;
 	}
-	
-	
+
 }

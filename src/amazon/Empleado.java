@@ -14,12 +14,24 @@ public class Empleado {
 	private String tlf;
 	private String nombreEmpleado;
 	private String apellidoEmpleado;
-	
+
+	/**
+	 * Constructor de la clase vacio
+	 * 
+	 * @param
+	 */
 	public Empleado() {
 		super();
 	}
 
-	public Empleado(String dni, String nombreEmpleado, String apellidoEmpleado, String direccion, String tlf, int id_amazon) {
+	/**
+	 * Constructor de la clase que recibe todas las variables
+	 * 
+	 * @param String dni, String nombreEmpleado, String apellidoEmpleado, String
+	 *               direccion, String tlf, int id_amazon
+	 */
+	public Empleado(String dni, String nombreEmpleado, String apellidoEmpleado, String direccion, String tlf,
+			int id_amazon) {
 		super();
 		this.dni = dni;
 		this.id_amazon = id_amazon;
@@ -76,6 +88,5 @@ public class Empleado {
 	public void setApellidoEmpleado(String apellidoEmpleado) {
 		this.apellidoEmpleado = apellidoEmpleado;
 	}
-	
-	
+
 }

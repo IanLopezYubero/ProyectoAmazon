@@ -29,6 +29,14 @@
 </head>
 <body>
 
+	<%
+		/**
+		 * Archivo jsp que muestra el inicio de sesion de la web
+		 * 
+		 * @author Ian Lopez
+		 * @version 19/05/2020
+		 */
+	%>
 	<div class="container">
 		<div class="d-flex justify-content-center h-100">
 			<div class="card">

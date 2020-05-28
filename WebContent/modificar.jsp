@@ -28,6 +28,12 @@
 </head>
 <body>
 	<%
+		/**
+		 * Archivo jsp que modifica los datos de la web
+		 * 
+		 * @author Ian Lopez
+		 * @version 19/05/2020
+		 */
 		BDController controladorBD = new BDController();
 		ArrayList<Amazon> amazons = controladorBD.dameAmazons();
 		ArrayList<Seccion> secciones = controladorBD.dameSecciones();
@@ -486,9 +492,9 @@
 			<label>Existencias</label> <input type="number" class="form-control"
 				name="existencias" id="exampleInputEmail1"
 				aria-describedby="emailHelp" placeholder=""
-				value="<%=product.getExistencias()%>"> <input
-				type="hidden" class="form-control" name="id_producto"
-				id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""
+				value="<%=product.getExistencias()%>"> <input type="hidden"
+				class="form-control" name="id_producto" id="exampleInputEmail1"
+				aria-describedby="emailHelp" placeholder=""
 				value="<%=product.getId_producto()%>">
 		</div>
 		<div class="form-group form-check">
@@ -736,9 +742,9 @@
 			%>
 			<input type="hidden" class="form-control" name="id_servicio"
 				id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""
-				value="<%=servicio.getId_servicio()%>"> <input
-				type="hidden" class="form-control" name="id_pedido"
-				id="exampleInputEmail1" aria-describedby="emailHelp" placeholder=""
+				value="<%=servicio.getId_servicio()%>"> <input type="hidden"
+				class="form-control" name="id_pedido" id="exampleInputEmail1"
+				aria-describedby="emailHelp" placeholder=""
 				value="<%=servicio.getId_pedido()%>">
 		</div>
 

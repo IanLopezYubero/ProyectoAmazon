@@ -10,11 +10,21 @@ package amazon;
 public class Seccion {
 	private int id_seccion;
 	private String nombreSeccion;
-	
+
+	/**
+	 * Constructor de la clase vacio
+	 * 
+	 * @param
+	 */
 	public Seccion() {
 		super();
 	}
 
+	/**
+	 * Constructor de la clase que recibe todas las variables
+	 * 
+	 * @param int id_seccion, String nombreSeccion
+	 */
 	public Seccion(int id_seccion, String nombreSeccion) {
 		super();
 		this.id_seccion = id_seccion;
@@ -36,5 +46,5 @@ public class Seccion {
 	public void setNombreSeccion(String nombreSeccion) {
 		this.nombreSeccion = nombreSeccion;
 	}
-	
+
 }

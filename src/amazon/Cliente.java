@@ -17,11 +17,23 @@ public class Cliente {
 	private String tipoSuscripcion;
 	private String duracionSuscripcion;
 	private int id_amazon;
-	
+
+	/**
+	 * Constructor de la clase vacio
+	 * 
+	 * @param
+	 */
 	public Cliente() {
 		super();
 	}
 
+	/**
+	 * Constructor de la clase que recibe todas las variables
+	 * 
+	 * @param int id_cliente, String direccion, String nombreCliente, String
+	 *            apellidoCliente, String correoCliente, String tlf, String
+	 *            tipoSuscripcion, String duracionSuscripcion, int id_amazon
+	 */
 	public Cliente(int id_cliente, String direccion, String nombreCliente, String apellidoCliente, String correoCliente,
 			String tlf, String tipoSuscripcion, String duracionSuscripcion, int id_amazon) {
 		super();
@@ -107,6 +119,5 @@ public class Cliente {
 	public void setId_amazon(int id_amazon) {
 		this.id_amazon = id_amazon;
 	}
-	
-	
+
 }

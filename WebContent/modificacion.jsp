@@ -28,6 +28,12 @@
 </head>
 <body>
 	<%
+		/**
+		 * Archivo jsp que modifica los datos de la base de la web
+		 * 
+		 * @author Ian Lopez
+		 * @version 19/05/2020
+		 */
 		BDController controladorBD = new BDController();
 		ArrayList<Amazon> amazons = controladorBD.dameAmazons();
 		ArrayList<Seccion> secciones = controladorBD.dameSecciones();

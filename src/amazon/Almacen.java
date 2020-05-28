@@ -12,11 +12,21 @@ public class Almacen {
 	private String provincia;
 	private String localidad;
 	private int id_amazon;
-	
+
+	/**
+	 * Constructor de la clase vacio
+	 * 
+	 * @param
+	 */
 	public Almacen() {
 		super();
 	}
 
+	/**
+	 * Constructor de la clase que recibe todas las variables
+	 * 
+	 * @param int id_almacen, String provincia, String localidad, int id_amazon
+	 */
 	public Almacen(int id_almacen, String provincia, String localidad, int id_amazon) {
 		super();
 		this.id_almacen = id_almacen;
@@ -56,6 +66,5 @@ public class Almacen {
 	public void setId_amazon(int id_amazon) {
 		this.id_amazon = id_amazon;
 	}
-	
-	
+
 }

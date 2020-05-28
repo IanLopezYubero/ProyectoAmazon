@@ -28,19 +28,24 @@
 </head>
 <body>
 	<%
-BDController controladorBD = new BDController();
-ArrayList<Amazon> amazons = controladorBD.dameAmazons();
-ArrayList<Seccion> secciones = controladorBD.dameSecciones();
-ArrayList<Departamento> departamentos = controladorBD.dameDepartamentos();
-ArrayList<Almacen> almacenes = controladorBD.dameAlmacenes();
-ArrayList<Producto> productos = controladorBD.dameProductos();
-ArrayList<Cliente> clientes = controladorBD.dameClientes();
-ArrayList<Pedido> pedidos = controladorBD.damePedidos();
-ArrayList<Empleado> empleados = controladorBD.dameEmpleadosSeccion("Atención al Cliente");
-String usuario = "admin";
-String password = "admin";
-
-%>
+		/**
+		 * Archivo jsp que da de alta en la base de la web
+		 * 
+		 * @author Ian Lopez
+		 * @version 19/05/2020
+		 */
+		BDController controladorBD = new BDController();
+		ArrayList<Amazon> amazons = controladorBD.dameAmazons();
+		ArrayList<Seccion> secciones = controladorBD.dameSecciones();
+		ArrayList<Departamento> departamentos = controladorBD.dameDepartamentos();
+		ArrayList<Almacen> almacenes = controladorBD.dameAlmacenes();
+		ArrayList<Producto> productos = controladorBD.dameProductos();
+		ArrayList<Cliente> clientes = controladorBD.dameClientes();
+		ArrayList<Pedido> pedidos = controladorBD.damePedidos();
+		ArrayList<Empleado> empleados = controladorBD.dameEmpleadosSeccion("Atención al Cliente");
+		String usuario = "admin";
+		String password = "admin";
+	%>
 
 	<div class="d-flex p-2 " style="background: #232f3e;">
 		<nav class="navbar navbar-expand-lg navbar-light "
@@ -79,7 +84,7 @@ String password = "admin";
 						aria-haspopup="true" aria-expanded="false"> Altas </a>
 						<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 							<a class="dropdown-item"
-								href="alta.jsp?tipo=inicioAdministrador&usuario=<%= usuario %>&password=<%= password %>">Amazon</a>
+								href="alta.jsp?tipo=inicioAdministrador&usuario=<%=usuario%>&password=<%=password%>">Amazon</a>
 							<a class="dropdown-item" href="alta.jsp?tipo=altaProveedor">Proveedor</a>
 							<a class="dropdown-item" href="alta.jsp?tipo=altaEmpleado">Empleado</a>
 							<a class="dropdown-item" href="alta.jsp?tipo=altaAlmacen">Almacen</a>
@@ -113,10 +118,13 @@ String password = "admin";
 	</div>
 
 
-	<%//ALTA AMAZON
+	<%
+		//ALTA AMAZON
 
-if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
-	if(request.getParameter("usuario").equalsIgnoreCase("admin") && request.getParameter("password").equalsIgnoreCase("admin")){%>
+		if (request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")) {
+			if (request.getParameter("usuario").equalsIgnoreCase("admin")
+					&& request.getParameter("password").equalsIgnoreCase("admin")) {
+	%>
 
 	<h1 align="center">Alta Amazon</h1>
 
@@ -129,13 +137,13 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 		<div class="form-group form-check"></div>
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
-	<%}
-	
-	
-	//ALTA PROVEEDOR
-	
-	
-}else if(request.getParameter("tipo").equalsIgnoreCase("altaProveedor")){%>
+	<%
+		}
+
+			//ALTA PROVEEDOR
+
+		} else if (request.getParameter("tipo").equalsIgnoreCase("altaProveedor")) {
+	%>
 	<h1 align="center">Alta Proveedor</h1>
 
 	<form action="operaciones.jsp?tipo=altaProveedor" method="post">
@@ -164,10 +172,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				Perteneciente</label>
 			<div class="col-12">
 				<select id="select" name="id_amazon" class="custom-select">
-					<%for(int i = 0; i < amazons.size(); i++){ %>
-					<option value="<%= amazons.get(i).getId_amazon() %>">
-						<%= amazons.get(i).getPais() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < amazons.size(); i++) {
+					%>
+					<option value="<%=amazons.get(i).getId_amazon()%>">
+						<%=amazons.get(i).getPais()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -176,10 +188,10 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 	</form>
 
 	<%
+		//ALTA EMPLEADO
 
-//ALTA EMPLEADO
-
-}else if(request.getParameter("tipo").equalsIgnoreCase("altaEmpleado")){%>
+		} else if (request.getParameter("tipo").equalsIgnoreCase("altaEmpleado")) {
+	%>
 	<h1 align="center">Alta Empleado</h1>
 
 	<form action="operaciones.jsp?tipo=altaEmpleado" method="post">
@@ -208,10 +220,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				Trabajo</label>
 			<div class="col-12">
 				<select id="select" name="id_amazon" class="custom-select">
-					<%for(int i = 0; i < amazons.size(); i++){ %>
-					<option value="<%= amazons.get(i).getId_amazon() %>">
-						<%= amazons.get(i).getPais() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < amazons.size(); i++) {
+					%>
+					<option value="<%=amazons.get(i).getId_amazon()%>">
+						<%=amazons.get(i).getPais()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -220,10 +236,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				Trabajo</label>
 			<div class="col-12">
 				<select id="select" name="id_seccion" class="custom-select">
-					<%for(int i = 0; i < secciones.size(); i++){ %>
-					<option value="<%= secciones.get(i).getId_seccion() %>">
-						<%= secciones.get(i).getNombreSeccion() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < secciones.size(); i++) {
+					%>
+					<option value="<%=secciones.get(i).getId_seccion()%>">
+						<%=secciones.get(i).getNombreSeccion()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -235,10 +255,10 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 
 
 	<%
+		//ALTA ALMACEN
 
-//ALTA ALMACEN
-
-}else if(request.getParameter("tipo").equalsIgnoreCase("altaAlmacen")){%>
+		} else if (request.getParameter("tipo").equalsIgnoreCase("altaAlmacen")) {
+	%>
 	<h1 align="center">Alta Almacén</h1>
 
 	<form action="operaciones.jsp?tipo=altaAlmacen" method="post">
@@ -257,10 +277,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				Perteneciente</label>
 			<div class="col-12">
 				<select id="select" name="id_amazon" class="custom-select">
-					<%for(int i = 0; i < amazons.size(); i++){ %>
-					<option value="<%= amazons.get(i).getId_amazon() %>">
-						<%= amazons.get(i).getPais() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < amazons.size(); i++) {
+					%>
+					<option value="<%=amazons.get(i).getId_amazon()%>">
+						<%=amazons.get(i).getPais()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -269,10 +293,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				departamento</label>
 			<div class="col-12">
 				<select id="select" name="id_departamento" class="custom-select">
-					<%for(int i = 0; i < departamentos.size(); i++){ %>
-					<option value="<%= departamentos.get(i).getId_departamento() %>">
-						<%= departamentos.get(i).getNombreDepartamento() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < departamentos.size(); i++) {
+					%>
+					<option value="<%=departamentos.get(i).getId_departamento()%>">
+						<%=departamentos.get(i).getNombreDepartamento()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -280,10 +308,10 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 	<%
+		//ALTA SECCION
 
-//ALTA SECCION
-
-}else if(request.getParameter("tipo").equalsIgnoreCase("altaSeccion")){%>
+		} else if (request.getParameter("tipo").equalsIgnoreCase("altaSeccion")) {
+	%>
 	<h1 align="center">Alta Sección</h1>
 
 	<form action="operaciones.jsp?tipo=altaSeccion" method="post">
@@ -296,10 +324,10 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 		<button type="submit" class="btn btn-primary">Submit</button>
 	</form>
 	<%
+		//ALTA DEPARTAMENTO
 
-//ALTA DEPARTAMENTO
-
-}else if(request.getParameter("tipo").equalsIgnoreCase("altaDepart")){%>
+		} else if (request.getParameter("tipo").equalsIgnoreCase("altaDepart")) {
+	%>
 	<h1 align="center">Alta Departamento</h1>
 
 	<form action="operaciones.jsp?tipo=altaDepart" method="post">
@@ -313,10 +341,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				almacen</label>
 			<div class="col-12">
 				<select id="select" name="id_almacen" class="custom-select">
-					<%for(int i = 0; i < almacenes.size(); i++){ %>
-					<option value="<%= almacenes.get(i).getId_almacen() %>">
-						<%= almacenes.get(i).getLocalidad() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < almacenes.size(); i++) {
+					%>
+					<option value="<%=almacenes.get(i).getId_almacen()%>">
+						<%=almacenes.get(i).getLocalidad()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -325,10 +357,10 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 	</form>
 
 	<%
+		//ALTA PRODUCTO
 
-//ALTA PRODUCTO
-
-}else if(request.getParameter("tipo").equalsIgnoreCase("altaProduct")){%>
+		} else if (request.getParameter("tipo").equalsIgnoreCase("altaProduct")) {
+	%>
 	<h1 align="center">Alta Producto</h1>
 
 	<form action="operaciones.jsp?tipo=altaProduct" method="post">
@@ -371,10 +403,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				departamento</label>
 			<div class="col-12">
 				<select id="select" name="id_departamento" class="custom-select">
-					<%for(int i = 0; i < departamentos.size(); i++){ %>
-					<option value="<%= departamentos.get(i).getId_departamento() %>">
-						<%= departamentos.get(i).getNombreDepartamento() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < departamentos.size(); i++) {
+					%>
+					<option value="<%=departamentos.get(i).getId_departamento()%>">
+						<%=departamentos.get(i).getNombreDepartamento()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -383,10 +419,10 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 	</form>
 
 	<%
+		//ALTA PEDIDO
 
-//ALTA PEDIDO
-
-}else if(request.getParameter("tipo").equalsIgnoreCase("altaPedido")){%>
+		} else if (request.getParameter("tipo").equalsIgnoreCase("altaPedido")) {
+	%>
 	<h1 align="center">Alta Pedido</h1>
 
 	<form action="operaciones.jsp?tipo=altaPedido" method="post">
@@ -446,10 +482,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				compró</label>
 			<div class="col-12">
 				<select id="select" name="id_cliente" class="custom-select">
-					<%for(int i = 0; i < clientes.size(); i++){ %>
-					<option value="<%= clientes.get(i).getId_cliente() %>">
-						<%= clientes.get(i).getNombreCliente() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < clientes.size(); i++) {
+					%>
+					<option value="<%=clientes.get(i).getId_cliente()%>">
+						<%=clientes.get(i).getNombreCliente()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -459,10 +499,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				comprado</label>
 			<div class="col-12">
 				<select id="select" name="id_producto" class="custom-select">
-					<%for(int i = 0; i < productos.size(); i++){ %>
-					<option value="<%= productos.get(i).getId_producto() %>">
-						<%= productos.get(i).getNombreProducto() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < productos.size(); i++) {
+					%>
+					<option value="<%=productos.get(i).getId_producto()%>">
+						<%=productos.get(i).getNombreProducto()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -471,10 +515,10 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 	</form>
 
 	<%
+		//ALTA SERVICIO-POSTVENTA
 
-//ALTA SERVICIO-POSTVENTA
-
-}else if(request.getParameter("tipo").equalsIgnoreCase("altaServc")){%>
+		} else if (request.getParameter("tipo").equalsIgnoreCase("altaServc")) {
+	%>
 	<h1 align="center">Alta Servicio-Postventa</h1>
 
 	<form action="operaciones.jsp?tipo=altaServc" method="post">
@@ -510,10 +554,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				Empleado</label>
 			<div class="col-12">
 				<select id="select" name="dniEmple" class="custom-select">
-					<%for(int i = 0; i < empleados.size(); i++){ %>
-					<option value="<%= empleados.get(i).getDni() %>">
-						<%= empleados.get(i).getNombreEmpleado() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < empleados.size(); i++) {
+					%>
+					<option value="<%=empleados.get(i).getDni()%>">
+						<%=empleados.get(i).getNombreEmpleado()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -522,10 +570,14 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 				Afectado</label>
 			<div class="col-12">
 				<select id="select" name="id_pedido" class="custom-select">
-					<%for(int i = 0; i < pedidos.size(); i++){ %>
-					<option value="<%= pedidos.get(i).getId_pedido() %>">
-						<%= pedidos.get(i).getId_pedido() %></option>
-					<%} %>
+					<%
+						for (int i = 0; i < pedidos.size(); i++) {
+					%>
+					<option value="<%=pedidos.get(i).getId_pedido()%>">
+						<%=pedidos.get(i).getId_pedido()%></option>
+					<%
+						}
+					%>
 				</select>
 			</div>
 		</div>
@@ -533,8 +585,8 @@ if(request.getParameter("tipo").equalsIgnoreCase("inicioAdministrador")){
 	</form>
 
 	<%
-}
-%>
+		}
+	%>
 
 	<footer class="page-footer font-small cyan darken-3 ">
 		<div class="container">

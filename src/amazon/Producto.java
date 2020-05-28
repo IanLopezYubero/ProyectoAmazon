@@ -17,11 +17,23 @@ public class Producto {
 	private String especificaciones;
 	private int existencias;
 	private int id_departamento;
-	
+
+	/**
+	 * Constructor de la clase vacio
+	 * 
+	 * @param
+	 */
 	public Producto() {
 		super();
 	}
 
+	/**
+	 * Constructor de la clase que recibe todas las variables
+	 * 
+	 * @param int id_producto, String nombreProducto, String paisProduccion, double
+	 *            precio, String marca, String modelo, String especificaciones, int
+	 *            existencias, int id_departamento
+	 */
 	public Producto(int id_producto, String nombreProducto, String paisProduccion, double precio, String marca,
 			String modelo, String especificaciones, int existencias, int id_departamento) {
 		super();
@@ -107,6 +119,5 @@ public class Producto {
 	public void setId_departamento(int id_departamento) {
 		this.id_departamento = id_departamento;
 	}
-	
-	
+
 }
